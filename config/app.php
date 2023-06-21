@@ -212,4 +212,8 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    'paginationPerPage' => [
+        'travels' => 10,
+        'tours' => 10
+    ]
 ];

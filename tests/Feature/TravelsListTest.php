@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Travel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class TravelsListTest extends TestCase
@@ -13,12 +12,13 @@ class TravelsListTest extends TestCase
 
     public function test_travels_list_returns_paginated_data_correctly(): void
     {
-        Travel::factory(11)->create(['is_public' => true]);
+        $perPage = config('app.paginationPerPage.travels');
+        Travel::factory($perPage + 1)->create(['is_public' => true]);
 
         $response = $this->get('/api/v1/travels');
 
         $response->assertStatus(200);
-        $response->assertJsonCount(10,'data');
+        $response->assertJsonCount($perPage,'data');
         $response->assertJsonPath('meta.last_page', 2);
     }
 
