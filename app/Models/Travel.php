@@ -8,10 +8,11 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Tour;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 
 class Travel extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable,HasUlids;
 
     // specifying cuz travels is not plural of travel
     protected $table = 'travels';
