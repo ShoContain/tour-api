@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\TravelController;
-
+use App\Http\Controllers\Api\V1\TourController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function () {
     Route::resource('travels', TravelController::class)->only('index');
+    Route::get('travels/{travel:slug}/tours', [TourController::class, 'index'])->name('tours.index');
 });
