@@ -18,10 +18,7 @@ class RoleSeeder extends Seeder
         $roleNames = ['admin', 'editor'];
 
         foreach ($roleNames as $roleName) {
-            $role = Role::create(['name' => $roleName]);
-
-            $user = User::inRandomOrder()->first();
-            $user->roles()->attach($role->id);
+            Role::create(['name' => $roleName]);
         }
     }
 }
