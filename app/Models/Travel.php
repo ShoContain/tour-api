@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 
 class Travel extends Model
 {
-    use HasFactory, Sluggable,HasUlids;
+    use HasFactory, Sluggable, HasUlids;
 
     // specifying cuz travels is not plural of travel
     protected $table = 'travels';
@@ -25,7 +25,12 @@ class Travel extends Model
         'number_of_days'
     ];
 
-    public function tours() :HasMany
+    protected $casts = [
+        'number_of_days' => 'integer',
+        'number_of_nights' => 'integer',
+    ];
+
+    public function tours(): HasMany
     {
         return $this->hasMany(Tour::class);
     }
