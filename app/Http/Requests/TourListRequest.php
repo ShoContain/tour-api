@@ -4,8 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class TourListRequest extends FormRequest
 {
@@ -42,15 +40,5 @@ class TourListRequest extends FormRequest
             'sortBy' => 'The sort by field must be one of the following types: price.',
             'sortDirection' => 'The sort direction field must be one of the following types: asc, desc.'
         ];
-    }
-
-    protected function failedValidation(Validator $validator)
-    {
-        $response = response()->json([
-            'message' => 'Validation error.',
-            'errors' => $validator->errors(),
-        ], 422);
-
-        throw new HttpResponseException($response);
     }
 }

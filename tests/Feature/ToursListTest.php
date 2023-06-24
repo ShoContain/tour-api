@@ -134,9 +134,9 @@ class ToursListTest extends TestCase
         $endpoint = "/api/v1/travels/$travel->slug/tours";
 
         $response = $this->get($endpoint . "?sortBy=hoge");
-        $response->assertStatus(422);
+        $response->assertStatus(302);
 
         $response = $this->get($endpoint . "?sortDirection=abcdefg");
-        $response->assertStatus(422);
+        $response->assertStatus(302);
     }
 }
