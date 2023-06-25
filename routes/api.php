@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\TravelController;
 use App\Http\Controllers\Api\V1\Admin\TravelController as AdminTravelController;
+use App\Http\Controllers\Api\V1\Admin\TourController as AdminTourController;
 use App\Http\Controllers\Api\V1\Auth\LoginController;
 use App\Http\Controllers\Api\V1\TourController;
 
@@ -27,6 +28,7 @@ Route::prefix('v1')->group(function () {
     // admin routes
     Route::prefix('admin')->middleware('auth:sanctum', 'role:admin')->group(function () {
         Route::resource('travels', AdminTravelController::class)->only('store');
+        Route::post('travels/{travel}/tours', [AdminTourController::class, 'store']);
     });
 
     // public routes
